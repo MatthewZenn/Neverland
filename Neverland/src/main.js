@@ -4,7 +4,10 @@ const color = document.getElementById('color');
 const noise = document.getElementById('noise');
 const brick = document.getElementById('brick');
 const wood = document.getElementById('wood');
+const qr = document.getElementById('qr');
 var colors = document.getElementById('colors');
+
+const chars= ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 var tones = [];
 var hues = "#fff";
@@ -19,6 +22,7 @@ var eight = '';
 var back = ['#863E5A', '#7E3A56', '#6A344B'];
 var fore = [ '#442131', '#3F1E2D', '#4B2737'];
 var accent = ['#5C3042', '#4B2737'];
+var code = '#';
 
 Array.prototype.random = function () {
   return this[Math.floor((Math.random()*this.length))];
@@ -78,6 +82,24 @@ const floorPatten = [
   [5,4,4,5,6,5,4,3,6,6,5,4,4,4,4,4],
   [1,2,2,1,1,2,3,3,3,2,1,2,1,1,1,1]];
 
+const qrPatten = [
+  [1,1,2,2,3,4,3,6,1,6,6,3,2,2,1,3],
+  [2,4,4,6,1,6,1,2,6,3,5,1,5,6,4,3],
+  [2,5,1,5,2,6,3,2,1,3,5,1,5,3,4,2],
+  [2,6,6,5,1,5,6,1,2,5,6,2,6,5,6,2],
+  [1,2,2,1,3,5,1,4,1,5,4,2,2,2,3,3],
+  [5,4,5,6,6,5,2,4,6,1,4,6,6,5,5,5],
+  [4,1,3,3,6,5,3,6,2,2,4,3,1,2,1,5],
+  [2,2,1,4,2,2,3,3,6,2,2,6,1,6,2,2],
+  [4,1,4,1,4,1,6,1,1,4,4,3,5,5,6,2],
+  [1,6,1,2,4,3,3,4,6,2,6,1,1,6,3,6],
+  [5,5,5,5,4,6,4,3,1,2,1,2,2,2,3,1],
+  [2,2,3,1,2,6,2,1,5,3,3,6,6,1,3,4],
+  [2,5,6,4,2,6,2,6,5,5,5,1,5,4,5,1],
+  [1,6,2,6,3,5,3,1,6,3,1,2,5,4,1,6],
+  [3,4,5,5,1,5,1,5,1,5,2,3,1,6,2,2],
+  [3,3,1,2,2,4,6,5,5,1,6,3,4,1,3,5]];
+
 color.addEventListener('click', function() {
   colorPicker()
 });
@@ -94,7 +116,12 @@ wood.addEventListener('click', function() {
   floorPlan()
 });
 
+qr.addEventListener('click', function() {
+  qrTexture()
+});
+
 function patternGenerate() {
+  splitter();
   for(var i = 0; i < blockPatten.length; i++) {
     var cube = blockPatten[i];
     for(var j = 0; j < cube.length; j++) {
@@ -168,24 +195,55 @@ function floorPlan() {
   patternGenerate();
 }
 
+function qrTexture() {
+  canvas.style.backgroundColor = "white";
+  blockPatten = qrPatten
+  patternGenerate();
+}
+
 function noiseFill() {
   hues = colors.value;
   tones = hues.split(' ');
 
   canvas.style.backgroundColor = "black";
   for(var i = 0; i < blockPatten.length; i++) {
-      var cube = blockPatten[i];
-      for(var j = 0; j < cube.length; j++) {
-        var rectData = {
-          "x": j,
-          "y": i,
-          "width": 1,
-          "height": 1
-        };
-        ctx.fillStyle = tones.random();
-        ctx.beginPath();
-        ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
-        ctx.closePath();
-      }
+    var cube = blockPatten[i];
+    for(var j = 0; j < cube.length; j++) {
+      var rectData = {
+        "x": j,
+        "y": i,
+        "width": 1,
+        "height": 1
+      };
+      ctx.fillStyle = tones.random();
+      ctx.beginPath();
+      ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
+      ctx.closePath();
+    }
   }
+}
+
+function colorPicker() {
+  colors.value = '';
+  for(let k=0; k<8; k++) {
+    code = '#';
+    for(let c=0; c<6; c++) {
+      code += chars.random();
+    }
+    colors.value += code + ' ';
+  }
+}
+
+function splitter() {
+  hues = colors.value;
+  tones = hues.split(' ');
+
+  one = tones.shift();
+  two = tones.shift();
+  three = tones.shift();
+  four = tones.shift();
+  five = tones.shift();
+  six = tones.shift();
+  seven = tones.shift();
+  eight = tones.shift();
 }
