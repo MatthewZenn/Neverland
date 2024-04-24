@@ -7,8 +7,6 @@ const wood = document.getElementById('wood');
 const qr = document.getElementById('qr');
 var colors = document.getElementById('colors');
 
-const chars= ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
 var tones = [];
 var hues = "#fff";
 var one = '#3F1E2D';
@@ -19,10 +17,11 @@ var five = '#6A344B';
 var six = '#7E3A56';
 var seven = '#863E5A';
 var eight = '';
-var back = ['#863E5A', '#7E3A56', '#6A344B'];
-var fore = [ '#442131', '#3F1E2D', '#4B2737'];
-var accent = ['#5C3042', '#4B2737'];
 var code = '#';
+var shift = 22;
+var sat = 40;
+var light = 11;
+var steep = 11;
 
 Array.prototype.random = function () {
   return this[Math.floor((Math.random()*this.length))];
@@ -101,7 +100,7 @@ const qrPatten = [
   [3,3,1,2,2,4,6,5,5,1,6,3,4,1,3,5]];
 
 color.addEventListener('click', function() {
-  colorPicker()
+  colorPicker(8)
 });
 
 noise.addEventListener('click', function() {
@@ -118,6 +117,22 @@ wood.addEventListener('click', function() {
 
 qr.addEventListener('click', function() {
   qrTexture()
+});
+
+document.getElementById('shifter').addEventListener('change', function() {
+  shift = document.getElementById('shifter').valueAsNumber;
+});
+
+document.getElementById('saturation').addEventListener('change', function() {
+  sat = document.getElementById('saturation').valueAsNumber;
+});
+
+document.getElementById('lit').addEventListener('change', function() {
+  light = document.getElementById('lit').valueAsNumber;
+});
+
+document.getElementById('steep').addEventListener('change', function() {
+  steep = document.getElementById('steep').valueAsNumber;
 });
 
 function patternGenerate() {
@@ -184,27 +199,42 @@ function patternGenerate() {
 }
 
 function brickLayer() {
+  if (colors.value == '') {
+    colorPicker(8);
+  }
   canvas.style.backgroundColor = "white";
   blockPatten = brickPatten
   patternGenerate();
+  colors.value = '';
 }
 
 function floorPlan() {
+  if (colors.value == '') {
+    colorPicker(8);
+  }
   canvas.style.backgroundColor = "white";
   blockPatten = floorPatten
   patternGenerate();
+  colors.value = '';
 }
 
 function qrTexture() {
+  if (colors.value == '') {
+    colorPicker(8);
+  }
   canvas.style.backgroundColor = "white";
   blockPatten = qrPatten
   patternGenerate();
+  colors.value = '';
 }
 
 function noiseFill() {
+  if (colors.value == '') {
+    colorPicker(4);
+  }
   hues = colors.value;
   tones = hues.split(' ');
-
+  tones.splice(4,4)
   canvas.style.backgroundColor = "black";
   for(var i = 0; i < blockPatten.length; i++) {
     var cube = blockPatten[i];
@@ -221,15 +251,18 @@ function noiseFill() {
       ctx.closePath();
     }
   }
+  colors.value = '';
 }
 
-function colorPicker() {
+function colorPicker(times) {
   colors.value = '';
-  for(let k=0; k<8; k++) {
-    code = '#';
-    for(let c=0; c<6; c++) {
-      code += chars.random();
-    }
+  var huel = 0;
+  var brightness = light;
+  huel = Math.floor(Math.random() * (360));
+  for(let k=0; k<times; k++) {
+    code = `hsl(${huel},${sat}%,${brightness}%)`;
+    brightness = brightness + steep;
+    huel = huel + shift;
     colors.value += code + ' ';
   }
 }
@@ -247,3 +280,4 @@ function splitter() {
   seven = tones.shift();
   eight = tones.shift();
 }
+

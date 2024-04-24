@@ -62,3 +62,100 @@ body, html {
   outline: none;
   padding: 5px;
 }
+
+#shifter {
+  position: absolute;
+  left: 55%;
+  top: 110px;
+  width: 60px;
+  height: 40px;
+  background-color: #141414;
+  border: 1px solid #353535;
+  border-radius: 5px;
+  color: white;
+  font-size: 12pt;
+  outline: none;
+  padding: 5px;
+  text-align: center;
+}
+
+#shift-lab {
+  position: absolute;
+  left: 61%;
+  top: 140px;
+  color: rgb(120, 120, 120);
+  font-size: 12pt;
+  outline: none;
+}
+
+#sat-lab {
+  position: absolute;
+  left: 61%;
+  top: 200px;
+  color: rgb(120, 120, 120);
+  font-size: 12pt;
+  outline: none;
+}
+
+#lit-lab {
+  position: absolute;
+  left: 68%;
+  top: 260px;
+  color: rgb(120, 120, 120);
+  font-size: 12pt;
+  outline: none;
+}
+
+#saturation {
+  position: absolute;
+  left: 55%;
+  top: 170px;
+  width: 60px;
+  height: 40px;
+  background-color: #141414;
+  border: 1px solid #353535;
+  border-radius: 5px;
+  color: white;
+  font-size: 12pt;
+  outline: none;
+  padding: 5px;
+  text-align: center;
+}
+
+#lit {
+  position: absolute;
+  left: 55%;
+  top: 230px;
+  width: 60px;
+  height: 40px;
+  background-color: #141414;
+  border: 1px solid #353535;
+  border-radius: 5px;
+  color: white;
+  font-size: 12pt;
+  outline: none;
+  padding: 5px;
+  text-align: center;
+}
+
+#steep {
+  position: absolute;
+  left: 61%;
+  top: 230px;
+  width: 70px;
+  height: 40px;
+  background-color: #141414;
+  border: 1px solid #353535;
+  border-radius: 5px;
+  color: white;
+  font-size: 12pt;
+  outline: none;
+  padding: 5px;
+  text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
