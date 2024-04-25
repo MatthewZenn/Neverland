@@ -159,3 +159,51 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+#mode {
+  position: absolute;
+  left: 55%;
+  top: 290px;
+  width: 160px;
+  height: 40px;
+  background-color: #141414;
+  border: 1px solid #353535;
+  border-radius: 5px;
+  color: white;
+  font-size: 12pt;
+  outline: none;
+  padding: 5px;
+}
+
+#tex-lab {
+  position: absolute;
+  left: 68%;
+  top: 310px;
+  color: rgb(120, 120, 120);
+  font-size: 12pt;
+  outline: none;
+}
+
+#decor {
+  position: absolute;
+  left: 55%;
+  top: 340px;
+  width: 160px;
+  height: 40px;
+  background-color: #141414;
+  border: 1px solid #353535;
+  border-radius: 5px;
+  color: white;
+  font-size: 12pt;
+  outline: none;
+  padding: 5px;
+}
+
+#decor-lab {
+  position: absolute;
+  left: 68%;
+  top: 360px;
+  color: rgb(120, 120, 120);
+  font-size: 12pt;
+  outline: none;
+}

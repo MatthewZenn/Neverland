@@ -2,9 +2,9 @@ var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 const color = document.getElementById('color');
 const noise = document.getElementById('noise');
-const brick = document.getElementById('brick');
-const wood = document.getElementById('wood');
-const qr = document.getElementById('qr');
+const block = document.getElementById('block');
+const decorate = document.getElementById('decorator');
+const texture = document.getElementById('mode')
 var colors = document.getElementById('colors');
 
 var tones = [];
@@ -107,16 +107,22 @@ noise.addEventListener('click', function() {
   noiseFill()
 });
 
-brick.addEventListener('click', function() {
-  brickLayer()
-});
-
-wood.addEventListener('click', function() {
-  floorPlan()
-});
-
-qr.addEventListener('click', function() {
-  qrTexture()
+block.addEventListener('click', function() {
+  var option = texture.value;
+  console.log(option);
+  switch (option) {
+    case 'brick':
+      brickLayer();
+      break;
+    case 'wood':
+      floorPlan();
+      break;
+    case 'qrpattern':
+      qrTexture();
+      break;
+    default:
+      break;
+  }
 });
 
 document.getElementById('shifter').addEventListener('change', function() {
@@ -251,7 +257,6 @@ function noiseFill() {
       ctx.closePath();
     }
   }
-  colors.value = '';
 }
 
 function colorPicker(times) {

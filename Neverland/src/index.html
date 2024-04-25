@@ -13,9 +13,8 @@
       <button class="button" id="save"><img src="assets/save.png"></button>
       <button class="button" id="color"><img src="assets/color.png"></button>
       <button class="button" id="noise"><img src="assets/noise.png"></button>
-      <button class="button" id="brick"><img src="assets/brick.png"></button>
-      <button class="button" id="wood"><img src="assets/wood.png"></button>
-      <button class="button" id="qr"><img src="assets/qrcode.png"></button>
+      <button class="button" id="block"><img src="assets/brick.png"></button>
+      <button class="button" id="decorator"><img src="assets/qrcode.png"></button>
     </div>
     <input type="text" id="colors" placeholder="Hex Values (seperated by spaces)">
     <input type="number" id="shifter" placeholder="Shift">
@@ -25,5 +24,18 @@
     <input type="number" id="lit" placeholder="Light">
     <input type="number" id="steep" placeholder="Increment">
     <label id="lit-lab">Brightness and Increment</label>
+    <select id="mode">
+      <option value="brick">Brick</option>
+      <option value="wood">Wood</option>
+      <option value="stone">Stone</option>
+      <option value="qrpattern">QR Code</option>
+    </select>
+    <select id="decor">
+      <option value="grass">Grass</option>
+      <option value="ore">Ore</option>
+      <option value="moss">Moss</option>
+    </select>
+    <label for="decor" id="decor-lab">Acessory</label>
+    <label for="mode" id="tex-lab">Texture Mode</label>
   </body>
 </html>
