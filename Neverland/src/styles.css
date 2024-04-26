@@ -63,7 +63,7 @@ body, html {
   padding: 5px;
 }
 
-#shifter {
+#pigment {
   position: absolute;
   left: 55%;
   top: 110px;
@@ -79,9 +79,25 @@ body, html {
   text-align: center;
 }
 
-#shift-lab {
+#shifter {
   position: absolute;
   left: 61%;
+  top: 110px;
+  width: 60px;
+  height: 40px;
+  background-color: #141414;
+  border: 1px solid #353535;
+  border-radius: 5px;
+  color: white;
+  font-size: 12pt;
+  outline: none;
+  padding: 5px;
+  text-align: center;
+}
+
+#shift-lab {
+  position: absolute;
+  left: 68%;
   top: 140px;
   color: rgb(120, 120, 120);
   font-size: 12pt;

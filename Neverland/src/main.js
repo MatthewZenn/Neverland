@@ -4,7 +4,8 @@ const color = document.getElementById('color');
 const noise = document.getElementById('noise');
 const block = document.getElementById('block');
 const decorate = document.getElementById('decorator');
-const texture = document.getElementById('mode')
+const texture = document.getElementById('mode');
+const pixel = document.getElementById('pigment');
 var colors = document.getElementById('colors');
 
 var tones = [];
@@ -109,7 +110,6 @@ noise.addEventListener('click', function() {
 
 block.addEventListener('click', function() {
   var option = texture.value;
-  console.log(option);
   switch (option) {
     case 'brick':
       brickLayer();
@@ -152,53 +152,58 @@ function patternGenerate() {
         "width": 1,
         "height": 1
       };
-      if (cube[j] == 1) {
-        ctx.fillStyle = one;
-        ctx.beginPath();
-        ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
-        ctx.closePath();
-      }
-      else if (cube[j] == 2){
-        ctx.fillStyle = two;
-        ctx.beginPath();
-        ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
-        ctx.closePath();
-      }
-      else if (cube[j] == 3){
-        ctx.fillStyle = three;
-        ctx.beginPath();
-        ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
-        ctx.closePath();
-      }
-      else if (cube[j] == 4){
-        ctx.fillStyle = four;
-        ctx.beginPath();
-        ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
-        ctx.closePath();
-      }
-      else if (cube[j] == 5){
-        ctx.fillStyle = five;
-        ctx.beginPath();
-        ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
-        ctx.closePath();
-      }
-      else if (cube[j] == 6){
-        ctx.fillStyle = six;
-        ctx.beginPath();
-        ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
-        ctx.closePath();
-      }
-      else if (cube[j] == 7){
-        ctx.fillStyle = seven;
-        ctx.beginPath();
-        ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
-        ctx.closePath();
-      }
-      else {
-        ctx.fillStyle = eight;
-        ctx.beginPath();
-        ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
-        ctx.closePath();
+      var pixel = cube[j];
+      switch(pixel) {
+        case 1:
+          ctx.fillStyle = one;
+          ctx.beginPath();
+          ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
+          ctx.closePath();
+          break;
+        case 2:
+          ctx.fillStyle = two;
+          ctx.beginPath();
+          ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
+          ctx.closePath();
+          break;
+        case 3:
+          ctx.fillStyle = three;
+          ctx.beginPath();
+          ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
+          ctx.closePath();
+          break;
+        case 4:
+          ctx.fillStyle = four;
+          ctx.beginPath();
+          ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
+          ctx.closePath();
+          break;
+        case 5:
+          ctx.fillStyle = five;
+          ctx.beginPath();
+          ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
+          ctx.closePath();
+          break;
+        case 6:
+          ctx.fillStyle = six;
+          ctx.beginPath();
+          ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
+          ctx.closePath();
+          break;
+        case 7:
+          ctx.fillStyle = seven;
+          ctx.beginPath();
+          ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
+          ctx.closePath();
+          break;
+        case 8:
+          ctx.fillStyle = eight;
+          ctx.beginPath();
+          ctx.fillRect(rectData.x,rectData.y, rectData.width, rectData.height);
+          ctx.closePath();
+          break;
+        default:
+          break;
       }
     }
   }
@@ -262,8 +267,13 @@ function noiseFill() {
 function colorPicker(times) {
   colors.value = '';
   var huel = 0;
+  if (pixel.value == '') {
+    huel = Math.floor(Math.random() * (360));
+  }
+  else {
+    huel = pixel.valueAsNumber;
+  }
   var brightness = light;
-  huel = Math.floor(Math.random() * (360));
   for(let k=0; k<times; k++) {
     code = `hsl(${huel},${sat}%,${brightness}%)`;
     brightness = brightness + steep;
