@@ -3,7 +3,6 @@ var ctx = canvas.getContext("2d");
 const color = document.getElementById('color');
 const noise = document.getElementById('noise');
 const block = document.getElementById('block');
-const decorate = document.getElementById('decorator');
 const texture = document.getElementById('mode');
 const pixel = document.getElementById('pigment');
 var colors = document.getElementById('colors');
@@ -125,6 +124,11 @@ block.addEventListener('click', function() {
   }
 });
 
+document.getElementById('reset').addEventListener('click', function() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+});
+
 document.getElementById('shifter').addEventListener('change', function() {
   shift = document.getElementById('shifter').valueAsNumber;
 });
@@ -213,8 +217,8 @@ function brickLayer() {
   if (colors.value == '') {
     colorPicker(8);
   }
-  canvas.style.backgroundColor = "white";
-  blockPatten = brickPatten
+  canvas.style.backgroundColor = "transparent";
+  blockPatten = brickPatten;
   patternGenerate();
   colors.value = '';
 }
@@ -223,8 +227,8 @@ function floorPlan() {
   if (colors.value == '') {
     colorPicker(8);
   }
-  canvas.style.backgroundColor = "white";
-  blockPatten = floorPatten
+  canvas.style.backgroundColor = "transparent";
+  blockPatten = floorPatten;
   patternGenerate();
   colors.value = '';
 }
@@ -233,8 +237,8 @@ function qrTexture() {
   if (colors.value == '') {
     colorPicker(8);
   }
-  canvas.style.backgroundColor = "white";
-  blockPatten = qrPatten
+  canvas.style.backgroundColor = "transparent";
+  blockPatten = qrPatten;
   patternGenerate();
   colors.value = '';
 }
@@ -243,10 +247,10 @@ function noiseFill() {
   if (colors.value == '') {
     colorPicker(4);
   }
+  canvas.style.backgroundColor = "transparent";
   hues = colors.value;
   tones = hues.split(' ');
   tones.splice(4,4)
-  canvas.style.backgroundColor = "black";
   for(var i = 0; i < blockPatten.length; i++) {
     var cube = blockPatten[i];
     for(var j = 0; j < cube.length; j++) {

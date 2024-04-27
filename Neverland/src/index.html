@@ -5,26 +5,31 @@
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Neverland</title>
-    <script type="module" src="/main.js" defer></script>
+    <script src="main.js" defer></script>
+    <script src="decor.js" defer></script>
   </head>
   <body>
+    <img src="assets/canvas.png" class="background">
     <canvas id="canvas" width="16" height="16"></canvas>
+    <canvas id="canvas2" width="16" height="16"></canvas>
     <div id="toolbar">
-      <button class="button" id="save"><img src="assets/save.png"></button>
-      <button class="button" id="color"><img src="assets/color.png"></button>
-      <button class="button" id="noise"><img src="assets/noise.png"></button>
-      <button class="button" id="block"><img src="assets/brick.png"></button>
-      <button class="button" id="decorator"><img src="assets/qrcode.png"></button>
+      <button class="button" id="save"><img src="assets/save.png"> Save Image</button>
+      <button class="button" id="color"><img src="assets/color.png"> Color Picker</button>
+      <button class="button" id="noise"><img src="assets/noise.png"> Noise Gen</button>
+      <button class="button" id="block"><img src="assets/brick.png"> Block Gen</button>
+      <button class="button" id="decorator"><img src="assets/qrcode.png"> Decorator</button>
+      <button class="button" id="grow"><img src="assets/plant.png"> Grass Gen</button>
+      <button class="button" id="reset"><img src="assets/burn.png"> Clear</button>
     </div>
     <input type="text" id="colors" placeholder="Hex Values (seperated by spaces)">
     <input type="number" id="pigment" placeholder="Hue">
     <input type="number" id="shifter" placeholder="Shift">
-    <label id="shift-lab">Hue shift</label>
+    <label id="shift-lab">Hue shift (default 22)</label>
     <input type="number" id="saturation" placeholder="Sat">
-    <label id="sat-lab">Saturation</label>
+    <label id="sat-lab">Saturation (default 40)</label>
     <input type="number" id="lit" placeholder="Light">
     <input type="number" id="steep" placeholder="Increment">
-    <label id="lit-lab">Brightness and Increment</label>
+    <label id="lit-lab">Brightness and Increment (default 11 shifted 11)</label>
     <select id="mode">
       <option value="brick">Brick</option>
       <option value="wood">Wood</option>
@@ -38,5 +43,10 @@
     </select>
     <label for="decor" id="decor-lab">Acessory</label>
     <label for="mode" id="tex-lab">Texture Mode</label>
+    <div class="grass-controls">
+      <input type="number" min="1" max="16" step="1" placeholder="Grass Height" id="height">
+      <input type="number" min="1" max="16" step="1" placeholder="Blade Count" id="blades">
+      <input type="number" placeholder="Variance" id="variance">
+    </div>
   </body>
 </html>
